@@ -1,15 +1,21 @@
 from collections import deque
 
+# Set maximum size for the stack
+MAX_SIZE = 5
+
 def push(stack, item):
-    stack.append(item)
-    print(f"'{item}' pushed onto the stack.")
+    if len(stack) >= MAX_SIZE:
+        print(f"Stack Overflow! Cannot push. Max size is {MAX_SIZE}.")
+    else:
+        stack.append(item)
+        print(f"'{item}' pushed onto the stack.")
 
 def pop(stack):
-    if not stack:
-        print("Stack Underflow! Cannot pop from an empty stack.")
-    else:
+    try:
         item = stack.pop()
         print(f"'{item}' popped from the stack.")
+    except IndexError:
+        print("Stack Underflow! Cannot pop from an empty stack.")
 
 def display(stack):
     if not stack:
@@ -23,7 +29,7 @@ def main():
     stack = deque()
 
     while True:
-        print("\n--- Stack Menu (deque) ---")
+        print("\n--- Stack Menu (deque with Max Size & Error Handling) ---")
         print("1. Push")
         print("2. Pop")
         print("3. Display")
@@ -31,18 +37,21 @@ def main():
 
         choice = input("Enter your choice (1–4): ")
 
-        if choice == '1':
-            item = input("Enter item to push: ")
-            push(stack, item)
-        elif choice == '2':
-            pop(stack)
-        elif choice == '3':
-            display(stack)
-        elif choice == '4':
-            print("Exiting program.")
-            break
-        else:
-            print("Invalid input! Please choose 1 to 4.")
+        try:
+            if choice == '1':
+                item = input("Enter item to push: ")
+                push(stack, item)
+            elif choice == '2':
+                pop(stack)
+            elif choice == '3':
+                display(stack)
+            elif choice == '4':
+                print("Exiting program.")
+                break
+            else:
+                raise ValueError("Invalid menu choice.")
+        except Exception as e:
+            print("Error:", e)
 
 if __name__ == "__main__":
     main()
