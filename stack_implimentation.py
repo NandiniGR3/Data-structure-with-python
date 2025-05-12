@@ -16,7 +16,62 @@ def display(stack):
         print("Stack is empty.")
     else:
         print("Current Stack:")
+        for i in reversed(stack):MAX_SIZE = 5  # You can change this to set a different stack limit
+
+def push(stack, item):
+    if len(stack) >= MAX_SIZE:
+        print("Stack Overflow! Cannot push more items.")
+        return
+
+    try:
+        item = int(item)
+        stack.append(item)
+        print(f"Item '{item}' pushed onto the stack.")
+    except ValueError:
+        print("Invalid input! Only integer values are allowed.")
+
+def pop(stack):
+    if not stack:
+        print("Stack Underflow! Cannot pop from an empty stack.")
+    else:
+        item = stack.pop()
+        print(f"Item '{item}' popped from the stack.")
+
+def display(stack):
+    if not stack:
+        print("Stack is empty.")
+    else:
+        print("Current Stack:")
         for i in reversed(stack):
+            print(i)
+
+def main():
+    stack = []
+
+    while True:
+        print("\n--- Stack Menu ---")
+        print("1. Push")
+        print("2. Pop")
+        print("3. Display")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            item = input("Enter the integer to push: ")
+            push(stack, item)
+        elif choice == '2':
+            pop(stack)
+        elif choice == '3':
+            display(stack)
+        elif choice == '4':
+            print("Exiting program. Goodbye!")
+            break
+        else:
+            print("Invalid choice! Please enter a number between 1 and 4.")
+
+if __name__ == "__main__":
+    main()
             print(i)
 
 def main():
@@ -53,5 +108,61 @@ if __name__ == "__main__":
 
 
 
+#simple stack implementation with only for intergers 
 
+MAX_SIZE = 5  # You can change this to set a different stack limit
 
+def push(stack, item):
+    if len(stack) >= MAX_SIZE:
+        print("Stack Overflow! Cannot push more items.")
+        return
+
+    try:
+        item = int(item)
+        stack.append(item)
+        print(f"Item '{item}' pushed onto the stack.")
+    except ValueError:
+        print("Invalid input! Only integer values are allowed.")
+
+def pop(stack):
+    if not stack:
+        print("Stack Underflow! Cannot pop from an empty stack.")
+    else:
+        item = stack.pop()
+        print(f"Item '{item}' popped from the stack.")
+
+def display(stack):
+    if not stack:
+        print("Stack is empty.")
+    else:
+        print("Current Stack:")
+        for i in reversed(stack):
+            print(i)
+
+def main():
+    stack = []
+
+    while True:
+        print("\n--- Stack Menu ---")
+        print("1. Push")
+        print("2. Pop")
+        print("3. Display")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            item = input("Enter the integer to push: ")
+            push(stack, item)
+        elif choice == '2':
+            pop(stack)
+        elif choice == '3':
+            display(stack)
+        elif choice == '4':
+            print("Exiting program. Goodbye!")
+            break
+        else:
+            print("Invalid choice! Please enter a number between 1 and 4.")
+
+if __name__ == "__main__":
+    main()
